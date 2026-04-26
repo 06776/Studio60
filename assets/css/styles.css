@@ -1,0 +1,1210 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Montserrat+Alternates:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --hue: 36; /* Meleg homok/arany árnyalat */
+
+  /* Főszínek - finom arany és sötétebb változata */
+  --first-color: hsl(var(--hue), 50%, 60%);
+  --first-color-alt: hsl(var(--hue), 40%, 40%);
+
+  --white-color: hsl(var(--hue), 20%, 15%); /* Sötét szöveg színe */
+  --black-color: hsl(var(--hue), 40%, 75%);
+  --text-color: hsl(var(--hue), 15%, 45%); /* Leírások színe */
+
+  /* Teljes weboldal háttér - nagyon világos bézs átmenet alapja */
+  --body-color: hsl(var(--hue), 40%, 94%);
+
+  /* Dobozok és kártyák (About, Skills, Services) - tiszta fehér vagy törtfehér */
+  --container-color: hsl(var(--hue), 40%, 98%);
+
+  /* Saroktól-sarokig tartó elegáns átmenet a profilhoz */
+  --conic-gradient: linear-gradient(
+    135deg,
+    hsl(var(--hue), 60%, 88%) 0%,
+    hsl(var(--hue), 40%, 75%) 100%
+  );
+
+  /* Extra finomítás a teljes háttérhez */
+  body {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--hue), 40%, 70%) 0%,
+      hsl(var(--hue), 30%, 88%) 100%
+    );
+    min-height: 100vh;
+  }
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat Alternates", sans-serif;
+  --second-font: "Grechen Fuemen", cursive;
+  --biggest-font-size: 2.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+  --smaller-font-size: 0.75rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1168px) {
+  :root {
+    --biggest-font-size: 2rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--white-color);
+}
+
+input,
+button,
+textarea {
+  border: none;
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1168px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 2rem 3rem;
+}
+
+.section__title {
+  font-size: var(--h2-font-size);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.main {
+  overflow: hidden;
+}
+
+/*=============== NAV ===============*/
+.nav {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  background-color: hsla(0, 0%, 98%, 0.1);
+  width: 88%;
+  margin-inline: auto;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1rem 2rem;
+  border-radius: 4rem;
+  z-index: var(--z-fixed);
+}
+
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  color: var(--white-color);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.6s;
+}
+
+/* Active link */
+.active-link {
+  background-color: var(--first-color);
+}
+
+/*=============== HOME ===============*/
+/*===== PERFIL =====*/
+.perfil {
+  position: relative;
+  align-self: flex-start;
+  background: var(--conic-gradient);
+  height: 415px;
+  border-radius: 2rem;
+  padding: 1rem;
+  display: grid;
+  overflow: hidden;
+}
+
+.perfil__img {
+  width: 210px;
+  position: relative;
+  justify-self: center;
+  align-self: flex-end;
+  border-radius: 2rem;
+}
+
+.perfil__data {
+  align-self: flex-end;
+  background-color: hsla(0, 0%, 1%, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.5rem 1rem;
+  border-radius: 1.5rem;
+  border: 3px solid hsla(0, 0%, 100%, 0.5);
+}
+
+.perfil__name {
+  font: var(--font-regular) 1.8rem var(--second-font);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.perfil__buttons {
+  display: grid;
+  column-gap: 0.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.perfil__buttons .button {
+  padding: 0.75rem 0;
+}
+
+/*===== INFO =====*/
+.info,
+.about,
+.skills {
+  background-color: var(--container-color);
+  padding: 2rem 1.5rem;
+  border-radius: 2rem;
+}
+
+.info__circle {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--first-color);
+  border-radius: 50%;
+}
+
+.info__name {
+  font: var(--font-regular) var(--h1-font-size) var(--second-font);
+}
+
+.info__data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.info__image {
+  background: var(--conic-gradient);
+  height: 180px;
+  border-radius: 2rem;
+  display: grid;
+  margin-block: 1.5rem;
+  overflow: hidden;
+}
+
+.info__placeholder {
+  width: 100%;
+  min-height: 250px;
+  background: var(--conic-gradient);
+  border-radius: inherit;
+}
+
+.info__img {
+  width: 140px;
+  justify-self: center;
+  align-self: flex-end;
+}
+
+.info__description {
+  font-size: var(--small-font-size);
+  margin-bottom: 2rem;
+}
+
+.info .button {
+  width: 100%;
+}
+
+/*===== ABOUT =====*/
+.about__name {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-regular);
+  margin-bottom: 1rem;
+}
+
+.about__social {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.5rem;
+  margin-block: 2rem;
+}
+
+.about__link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--white-color);
+  color: var(--black-color);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition:
+    background-color 0.4s,
+    color 0.4s;
+}
+
+.about__link:hover {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.about__image {
+  background: var(--conic-gradient);
+  height: 180px;
+  border-radius: 2rem;
+  display: grid;
+  overflow: hidden;
+}
+
+.about__img {
+  width: 250px;
+  justify-self: center;
+  transform: translateY(-2.5rem);
+}
+
+.about__note {
+  font-size: var(--small-font-size);
+  margin-block: 1rem 2rem;
+}
+
+.about .button {
+  width: 100%;
+}
+
+/*=============== BUSINESS CARD (NÉVJEGYKÁRTYA) ===============*/
+.business-card {
+  background-color: var(--container-color);
+  padding: 1.25rem 1rem; /* Kisebb belső margó */
+  border-radius: 1.5rem;
+  margin-top: 1rem; /* Kisebb távolság a fenti szövegtől */
+  border: 1px solid hsla(var(--hue), 20%, 80%, 0.4);
+}
+
+.business-card__title {
+  font-size: var(--small-font-size); /* Kisebb cím */
+  margin-bottom: 1rem; /* Kevesebb hely a cím alatt */
+  text-align: left; /* Balra igazítva gyakran több helyet spórol */
+}
+
+.business-card__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.business-card__item {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 1rem;
+  width: 100%; /* Biztosítja, hogy a teljes szélességet kihasználja */
+}
+
+/* EZ EGY ÚJ SZABÁLY: A szövegek dobozát kitöltésre kényszeríti */
+.business-card__item > div {
+  flex: 1;
+}
+
+.business-card__item i {
+  font-size: 1.25rem;
+  color: var(--first-color);
+  margin-top: 0.15rem;
+}
+
+.business-card__label {
+  display: block;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.business-card__text {
+  display: block;
+  font-size: var(--normal-font-size);
+  color: var(--white-color);
+  font-weight: var(--font-medium);
+}
+
+.business-card__link {
+  transition: color 0.3s;
+}
+
+.business-card__link:hover {
+  color: var(--first-color);
+}
+
+.business-card__hours {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.business-card__hours li {
+  font-size: var(--smaller-font-size);
+  color: var(--white-color);
+  font-weight: var(--font-medium);
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.25rem;
+  display: flex;
+  justify-content: space-between; /* Balra a nap, jobbra az időpont */
+  border-bottom: 1px dashed hsla(var(--hue), 20%, 80%, 0.2); /* Egy nagyon finom szaggatott vonal, ami vezeti a szemet */
+}
+
+.business-card__hours li:last-child {
+  margin-bottom: 0;
+  border-bottom: none; /* Az utolsó sor alá már nem kell vonal */
+}
+
+/*=============== BUTTON ===============*/
+.button {
+  display: inline-flex;
+  justify-content: center;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 2.5rem;
+  border-radius: 4rem;
+  transition: background-color 0.4s;
+}
+
+.button__black {
+  background-color: var(--black-color);
+}
+
+.button:hover {
+  background-color: var(--first-color-alt);
+}
+
+/*=============== ABOUT US ===============*/
+.about-us__container {
+  row-gap: 2rem;
+}
+
+.about-us__card {
+  background-color: var(--container-color);
+  padding: 2.5rem 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  /* Finom árnyék a mélységért a világos háttéren */
+  box-shadow: 0 8px 24px rgba(var(--hue), 20%, 40%, 0.05);
+  border: 1px solid hsla(var(--hue), 40%, 80%, 0.5);
+}
+
+.about-us__subtitle {
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-bottom: 1.5rem;
+  font-family: var(--second-font);
+}
+
+.about-us__description {
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.about-us__info-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid hsla(var(--hue), 20%, 50%, 0.1);
+}
+
+.about-us__info-title {
+  font-size: var(--h1-font-size);
+  color: var(--first-color);
+  margin-bottom: 0.25rem;
+}
+
+.about-us__info-text {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsiveness for About Us */
+@media screen and (min-width: 768px) {
+  .about-us__container {
+    grid-template-columns: 600px;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .about-us__container {
+    grid-template-columns: 800px;
+  }
+
+  .about-us__card {
+    padding: 4rem;
+  }
+}
+
+/*=============== PROJECTS ===============*/
+.projects__card {
+  background-color: var(--container-color);
+  padding: 1.5rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects__data {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.projects__image {
+  display: block;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.projects__img {
+  transition: transform 0.4s;
+}
+
+.projects__name {
+  font-size: var(--h3-font-size);
+  margin-bottom: 0.5rem;
+}
+
+.projects__description {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.projects__skill {
+  width: 1rem;
+  transition: transform 0.4s;
+}
+
+.projects__skill:hover {
+  transform: translateY(-0.25rem);
+}
+
+.projects__skills {
+  width: max-content;
+  height: 34px;
+  background-color: var(--black-color);
+  padding-inline: 0.75rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+  border-radius: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.projects__button {
+  color: var(--white-color);
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  transition: color 0.4s;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.projects__button i {
+  font-size: 1.25rem;
+}
+
+.projects__button span {
+  font-weight: var(--font-medium);
+}
+
+.projects__button:hover {
+  color: var(--text-color);
+}
+
+.projects__card:hover .projects__img {
+  transform: scale(1.2);
+}
+
+/*=============== PRICING ===============*/
+.pricing__container {
+  row-gap: 2rem;
+}
+
+.pricing__card {
+  background-color: var(--container-color);
+  padding: 3rem 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  border: 1px solid hsla(var(--hue), 20%, 80%, 0.5);
+  box-shadow: 0 8px 24px rgba(var(--hue), 20%, 40%, 0.03);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.4s,
+    box-shadow 0.4s;
+}
+
+.pricing__card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 12px 32px rgba(var(--hue), 20%, 40%, 0.1);
+}
+
+/* A kiemelt, középső kártya stílusa */
+.pricing__card-active {
+  background: var(--conic-gradient); /* Használja a szép átmenetünket */
+  border: none;
+}
+
+/* "Legnépszerűbb" szalag */
+.pricing__badge {
+  position: absolute;
+  top: 2.5rem; /* Kicsit lejjebb toljuk a saroktól */
+  right: -3.5rem; /* Kicsit kijjebb toljuk, hogy a szalag végei túllógjanak a vágáson */
+  width: 15rem; /* Fix szélességet adunk, hogy a hosszú magyar szó biztosan elférjen */
+  text-align: center; /* Középre igazítjuk a szót a szalagon belül */
+  background-color: var(--first-color-alt);
+  color: #fff;
+  padding: 0.5rem 0; /* A jobb/bal belső margót levesszük, mert a text-align rendezi */
+  font-size: var(--smaller-font-size);
+  transform: rotate(45deg);
+  font-weight: var(--font-semi-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.pricing__title {
+  font-size: var(--h3-font-size);
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+}
+
+.pricing__amount {
+  font-size: var(--biggest-font-size);
+  color: var(--first-color);
+  margin-bottom: 2rem;
+  font-family: var(--second-font);
+}
+
+.pricing__list {
+  text-align: left;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.25rem;
+  flex: 1; /* A gombot az aljára tolja, mint a projekteknél */
+}
+
+.pricing__item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+  color: var(--white-color); /* Sötét szöveg a világos háttéren */
+  font-size: var(--normal-font-size);
+}
+
+.pricing__item i {
+  color: var(--first-color);
+  font-size: 1.5rem;
+}
+
+.pricing__button {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* Áraink Reszponzivitás (Nagy képernyők) */
+@media screen and (min-width: 768px) {
+  .pricing__container {
+    grid-template-columns: repeat(3, 320px);
+    justify-content: center;
+    align-items: center; /* Hogy a középső kártya kiemelkedjen */
+  }
+
+  .pricing__card-active {
+    padding-block: 4rem; /* Kicsit magasabb lesz a többinél */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .pricing__container {
+    grid-template-columns: repeat(3, 350px);
+    gap: 2rem;
+  }
+
+  .pricing__card {
+    padding: 3.5rem 2.5rem;
+  }
+
+  .pricing__card-active {
+    padding-block: 4.5rem;
+  }
+}
+
+/*=============== TESTIMONIALS ===============*/
+.testimonials__container {
+  padding-bottom: 4rem;
+}
+
+.testimonials__card {
+  text-align: center;
+  padding: 3rem 2rem;
+  /* Soft Glass háttér design */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 2.5rem;
+  border: 1px solid rgba(var(--hue), 20%, 80%, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s;
+}
+
+.testimonials__card:hover {
+  transform: scale(1.02);
+}
+
+.testimonials__quote {
+  display: inline-block;
+  font-size: 2.5rem;
+  color: var(--first-color);
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.testimonials__description {
+  /* Itt váltottunk olvashatóbb betűtípusra */
+  font-family: var(--body-font); /* A fő, jól olvasható betűtípus */
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  line-height: 1.8;
+  color: var(--white-color); /* Sötét szöveg a világos háttéren */
+  margin-bottom: 2rem;
+  letter-spacing: 0.3px;
+}
+
+.testimonials__date {
+  font-size: var(--smaller-font-size);
+  color: var(--first-color);
+  text-transform: uppercase;
+  font-weight: var(--font-semi-bold);
+  letter-spacing: 1.5px;
+}
+
+/* Swiper pöttyök */
+.swiper-pagination-bullet {
+  background-color: var(--first-color-alt);
+}
+
+/*=============== CONTACT ===============*/
+.contact__group,
+.contact__form {
+  gap: 1rem;
+}
+
+.contact__form {
+  position: relative;
+}
+
+.contact__input {
+  background-color: var(--container-color);
+  padding: 1.25rem;
+  border-radius: 4rem;
+  color: var(--white-color);
+}
+
+.contact__input::placeholder {
+  color: var(--text-color);
+}
+
+.contact__input:autofill {
+  transition:
+    background-color 6000s,
+    color 6000s;
+}
+
+.contact__area {
+  height: 10rem;
+  border-radius: 1.5rem;
+  resize: none;
+}
+
+.contact__button {
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+.contact__message {
+  position: absolute;
+  left: 0;
+  bottom: 4.5rem;
+  font-size: var(--smaller-font-size);
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+  padding-block: 2rem 8rem;
+}
+
+.footer__container {
+  row-gap: 2.5rem;
+}
+
+.footer__logo {
+  color: var(--white-color);
+  font: var(--font-regular) var(--biggest-font-size) var(--second-font);
+  justify-self: center;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+.footer__link {
+  color: var(--white-color);
+  transition: color 0.4s;
+}
+
+.footer__link:hover {
+  color: var(--text-color);
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.5rem;
+}
+
+.footer__social-link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition:
+    background-color 0.4s,
+    color 0.4s;
+}
+
+.footer__social-link:hover {
+  background-color: var(--white-color);
+  color: var(--black-color);
+}
+
+.footer__copy {
+  display: block;
+  margin-top: 4.5rem;
+  text-align: center;
+  color: var(--text-color);
+  letter-spacing: 0.5px; /* Betűköz */
+}
+
+.footer__copy p {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  margin-bottom: 0.5rem; /* Kis hely a 2 sor között */
+  color: var(--white-color); /* Sötét szín világos hátteren */
+}
+
+.footer__developer {
+  font-size: var(--smaller-font-size);
+  opacity: 1; /* Powered by átlátszósága */
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: hsl(0, 0%, 20%);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 30%);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(0, 0%, 40%);
+}
+
+/*=============== SCROLL UP ===============*/
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: hsla(0, 0%, 98%, 0.1);
+  display: inline-flex;
+  padding: 6px;
+  color: var(--white-color);
+  font-size: 1.25rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 0.5rem;
+  z-index: var(--z-tooltip);
+  transition:
+    bottom 0.4s,
+    transform 0.4s;
+}
+
+.scrollup:hover {
+  transform: translateY(-0.5rem);
+}
+
+/* Show Scroll Up */
+.show-scroll {
+  bottom: 8rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .nav {
+    padding: 1rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 540px) {
+  .nav {
+    width: max-content;
+  }
+
+  .nav__list {
+    column-gap: 1.25rem;
+  }
+
+  .home__container,
+  .projects__container,
+  .services__container,
+  .experience__container,
+  .contact__container {
+    grid-template-columns: 380px;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home__container {
+    grid-template-columns: repeat(2, 350px);
+    align-items: flex-start;
+  }
+
+  .perfil {
+    height: 100%;
+  }
+
+  .projects__container,
+  .services__container {
+    grid-template-columns: repeat(2, 350px);
+  }
+
+  .experience__container {
+    grid-template-columns: initial;
+  }
+
+  .experience__card {
+    grid-template-columns: 320px 380px;
+    align-items: center;
+  }
+
+  .footer__container,
+  .footer__content {
+    grid-template-columns: repeat(2, max-content);
+    align-items: center;
+  }
+
+  .footer__container {
+    justify-content: space-between;
+  }
+
+  .footer__content {
+    column-gap: 4.5rem;
+  }
+
+  .show-scroll {
+    bottom: 3rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1200px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .section {
+    padding-block: 3rem 4rem;
+  }
+
+  .section__title {
+    font-size: var(--h1-font-size);
+    margin-bottom: 4rem;
+  }
+
+  .home__container {
+    grid-template-columns: 280px 560px 280px;
+    align-items: center;
+  }
+
+  .perfil {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    padding: 2rem;
+  }
+
+  .perfil__img {
+    width: 450px;
+  }
+
+  .perfil__data {
+    width: 370px;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    justify-self: center;
+  }
+
+  .perfil__name {
+    font-size: var(--biggest-font-size);
+    text-align: center;
+  }
+
+  .info {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .info__name {
+    font-size: var(--h2-font-size);
+  }
+
+  .about {
+    grid-column: 3/4;
+    grid-row: 1/3;
+    align-content: center;
+  }
+
+  .about__image {
+    height: 210px;
+  }
+
+  .about__img {
+    transform: translateY(-1rem);
+  }
+
+  .skills {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .skills__title {
+    font-size: var(--h3-font-size);
+  }
+
+  .projects__container {
+    grid-template-columns: repeat(3, 368px);
+    gap: 2rem;
+  }
+
+  .projects__card {
+    padding-bottom: 2rem;
+  }
+
+  .services__container {
+    grid-template-columns: repeat(3, 368px);
+    gap: 2rem;
+  }
+
+  .services__card {
+    padding-block: 6rem 5rem;
+  }
+
+  .services__icon i {
+    font-size: 3.5rem;
+  }
+
+  .services__circle {
+    width: 4rem;
+    height: 4rem;
+    right: -1.5rem;
+    top: -1.5rem;
+  }
+
+  .experience__container {
+    row-gap: 4rem;
+  }
+
+  .experience__card {
+    grid-template-columns: 350px 510px;
+    column-gap: 8rem;
+  }
+
+  .experience__company {
+    font-size: var(--h1-font-size);
+  }
+
+  .experience__data {
+    padding: 2rem;
+    border-radius: 2rem;
+  }
+
+  .contact__container {
+    grid-template-columns: 620px;
+  }
+
+  .contact__group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact__area {
+    height: 15rem;
+  }
+
+  .contact__button {
+    width: max-content;
+    justify-self: center;
+  }
+
+  .footer {
+    padding-top: 3rem;
+  }
+
+  .footer__links {
+    column-gap: 3rem;
+  }
+
+  .footer__copy {
+    margin-top: 7rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .nav {
+    width: max-content;
+    height: max-content;
+    padding: 2rem 1rem;
+    left: initial;
+    right: 3rem;
+    top: 0;
+    bottom: 0;
+    margin-block: auto;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    row-gap: 1.25rem;
+  }
+
+  .footer {
+    padding-block: 3rem;
+  }
+
+  .scrollup {
+    right: 4rem;
+  }
+}
+
+/* A képek reszponzívvá tétele */
+.info__img {
+  width: 100%; /* Kitölti a szülő doboz szélességét */
+  height: 100%; /* Kitölti a szülő doboz magasságát */
+  object-fit: cover; /* A lényeg: kitölti a dobozt anélkül, hogy torzulna */
+  object-position: center; /* Mindig középre igazítja a kép tartalmát */
+  display: block; /* Eltünteti az alsó minimális rést, amit a böngésző néha hagy */
+}
+
+/* Mobilos nézet finomhangolása */
+@media screen and (max-width: 767px) {
+  .info__image {
+    width: 150px; /* Vagy akkora méret, amit a mobil nézetben szeretnél */
+    height: 150px;
+    margin: 0 auto; /* Középre igazítja mobilon */
+  }
+}
