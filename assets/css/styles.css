@@ -529,6 +529,8 @@ img {
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .projects__data {
@@ -537,17 +539,47 @@ img {
   flex: 1;
 }
 
-.projects__image {
+/* 1. Közös képtartó: mind a sima, mind a slideres dobozra */
+.projects__image,
+.card-swiper {
   display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  position: relative;
   overflow: hidden;
   border-radius: 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 0;
+  height: auto;
 }
 
+/* 2. Swiper mobilos összeesésének gátlása */
+.card-swiper .swiper-wrapper,
+.card-swiper .swiper-slide {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative;
+}
+
+/* 3. Maga a kép: kitölti a 4:3-as dobozt */
 .projects__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
   transition: transform 0.4s;
 }
 
+/* 4. A te eredeti zoomolós hover effektusod */
+.projects__card:hover .projects__img {
+  transform: scale(1.2);
+}
+
+/*=============== A TE EREDETI SZÖVEG ÉS GOMB BEÁLLÍTÁSAID ===============*/
 .projects__name {
   font-size: var(--h3-font-size);
   margin-bottom: 0.5rem;
@@ -568,7 +600,9 @@ img {
 }
 
 .projects__skills {
-  width: max-content;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
   height: 34px;
   background-color: var(--black-color);
   padding-inline: 0.75rem;
@@ -1240,4 +1274,28 @@ img {
   .projects__container .projects__card:nth-child(10):last-child {
     grid-column: 2 / 3; /* Beteszi pontosan a 2. (középső) oszlopba */
   }
+}
+
+@media screen and (max-width: 576px) {
+  
+  /* A konténert rácsról (Grid) oszlopos Flexbox-ra cseréljük */
+  .projects__container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Ez a parancs kényszeríti szigorúan középre az összes kártyát */
+    row-gap: 2rem !important; /* Távolság a kártyák között */
+    padding-left: 1rem !important; /* Biztonsági sáv balra */
+    padding-right: 1rem !important; /* Biztonsági sáv jobbra */
+    width: 100% !important;
+    margin: 0 !important; /* Törlünk minden rejtett eltolást */
+  }
+
+  /* A kártya beállításai */
+  .projects__card {
+    width: 100% !important;
+    max-width: 380px !important; /* Továbbra sem hagyjuk, hogy túl széles legyen */
+    margin: 0 !important; /* A margin: auto-t kivettük, mert az align-items: center már elvégezte a munkát */
+    box-sizing: border-box !important;
+  }
+  
 }
