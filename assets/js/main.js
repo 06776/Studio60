@@ -92,6 +92,17 @@ let swiperTestimonials = new Swiper(".testimonials__container", {
   },
 });
 
+/*=============== ÓRATÍPUSOK KÁRTYA SWIPER ===============*/
+let swiperCards = new Swiper(".card-swiper", {
+  loop: true,               // Végtelenítve ismétlődik
+  grabCursor: true,         // Kis kéz ikon jelenik meg felette (húzható)
+  spaceBetween: 16,         // Egy pici szünet a képek között slide-olás közben
+  autoplay: {
+    delay: 3500,          // 3.5 másodpercenként vált (ezt átírhatod)
+    disableOnInteraction: false, // Akkor is folytatja, ha a felhasználó belenyúl
+  },
+});
+
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
   origin: "top",
