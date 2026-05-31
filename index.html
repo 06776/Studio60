@@ -28,6 +28,38 @@
     <title>Studio 60 Soul Yoga</title>
   </head>
   <body>
+    <!-- =======================================================
+         KARBANTARTÁS MÓD 
+         Bekapcsolás: A lenti sorban írd át a 'none' szót 'flex'-re!
+         Kikapcsolás: Írd vissza 'none'-ra!
+         ======================================================= -->
+    <div id="maintenance-mode" style="display: none">
+      <div class="maintenance-card">
+        <!-- Ide írd be a logód pontos elérési útját (pl. logo.png) -->
+        <img
+          src="assets/img/studio60.png"
+          alt="Studio 60 Logo"
+          class="maintenance-logo"
+        />
+
+        <h2 class="maintenance-title">Karbantartás alatt</h2>
+        <p class="maintenance-text">
+          Weboldalunk jelenleg karbantartás alatt áll.<br />
+          Hamarosan újra elérhetőek leszünk!
+        </p>
+        <div class="maintenance-social">
+          <p>Addig is látogasd meg Facebook oldalunkat:</p>
+          <a
+            href="https://www.facebook.com/people/Studio60/61588216691451/"
+            target="_blank"
+            class="maintenance-social-link"
+          >
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!--==================== NAV ====================-->
     <nav class="nav">
       <ul class="nav__list">
@@ -696,7 +728,7 @@
             <h3 class="schedule__day-title">Hétfő</h3>
             <div class="schedule__class">
               <span class="schedule__time">17:00 - 18:00</span>
-              <h4 class="schedule__name">Jín Jóga</h4>
+              <h4 class="schedule__name">Jin Jóga</h4>
               <span class="schedule__instructor">Mónika</span>
             </div>
             <div class="schedule__class">

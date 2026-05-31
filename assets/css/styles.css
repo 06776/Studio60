@@ -1542,3 +1542,83 @@ img {
   margin-left: 0.25rem;
   transition: 0.3s;
 }
+
+/*==================================================
+   KARBANTARTÁS MÓD (MAINTENANCE) STÍLUSAI
+  ==================================================*/
+
+#maintenance-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #f3ede6; /* Elegáns, megnyugtató homokszín háttér */
+  z-index: 999999; /* Maximális érték: garantáltan minden más elem felett lesz */
+
+  /* A display tulajdonságot szándékosan nem ide írjuk, 
+     mert azt a HTML-ben lévő 'style' vezérli a be/kikapcsoláshoz! */
+
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.maintenance-card {
+  /* Ugyanaz az elegáns színátmenet, mint az Áraink kártyáknál */
+  background: linear-gradient(145deg, #ffffff 0%, #d2bfae 100%);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 4rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maintenance-logo {
+  width: 180px; /* Logó mérete - ezt bátran átírhatod nagyobbra/kisebbre */
+  margin-bottom: 2rem;
+}
+
+.maintenance-title {
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+  margin-bottom: 1rem;
+}
+
+.maintenance-text {
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Karbantartás - Facebook szekció dizájnja */
+.maintenance-social {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1.5px dashed rgba(0,0,0,0.1); /* Elegáns elválasztó vonal a fő szövegtől */
+  width: 100%;
+}
+
+.maintenance-social p {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+}
+
+.maintenance-social-link {
+  display: inline-block;
+  font-size: 2.5rem; /* Nagy, könnyen kattintható ikon mobilon is */
+  color: var(--title-color);
+  transition: all 0.3s ease;
+}
+
+/* Egy kis interaktív animáció, ha ráviszik az egeret */
+.maintenance-social-link:hover {
+  opacity: 0.7;
+  transform: translateY(-4px); /* Picit feljebb ugrik a gomb */
+}
