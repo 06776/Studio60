@@ -94,11 +94,11 @@ let swiperTestimonials = new Swiper(".testimonials__container", {
 
 /*=============== ÓRATÍPUSOK KÁRTYA SWIPER ===============*/
 let swiperCards = new Swiper(".card-swiper", {
-  loop: true,               // Végtelenítve ismétlődik
-  grabCursor: true,         // Kis kéz ikon jelenik meg felette (húzható)
-  spaceBetween: 16,         // Egy pici szünet a képek között slide-olás közben
+  loop: true, // Végtelenítve ismétlődik
+  grabCursor: true, // Kis kéz ikon jelenik meg felette (húzható)
+  spaceBetween: 16, // Egy pici szünet a képek között slide-olás közben
   autoplay: {
-    delay: 3500,          // 3.5 másodpercenként vált (ezt átírhatod)
+    delay: 3500, // 3.5 másodpercenként vált (ezt átírhatod)
     disableOnInteraction: false, // Akkor is folytatja, ha a felhasználó belenyúl
   },
 });
@@ -117,6 +117,63 @@ sr.reveal(`.info`, { origin: "left", delay: 800 });
 sr.reveal(".business-card", { origin: "left", delay: 1000 });
 sr.reveal(`.about`, { origin: "right", delay: 1200 });
 sr.reveal(`.about-us__card`, { origin: "bottom", delay: 600 });
-sr.reveal(`.projects__card, .pricing__card, .testimonials__container`, {
+sr.reveal(`.projects__card, .testimonials__container`, {
   interval: 100,
+});
+/* Jóga Rend (Órarend) beúszó animációja */
+sr.reveal(".schedule .section__title, .schedule .section__subtitle", {
+  origin: "top",
+});
+sr.reveal(".schedule__day", { interval: 100 });
+
+/*=============== PRICING SWIPER (ÁRAINK CSÚSZKA) ===============*/
+let swiperPricing = new Swiper(".pricing__container", {
+  loop: true,
+  spaceBetween: 24,
+  grabCursor: true,
+
+  /* IDE KERÜLT AZ AUTOMATA LAPOZÁS (3.5 másodpercenként) */
+  autoplay: {
+    delay: 3500,
+    disableOnInteraction: false /* Ha a felhasználó belekattint, utána is folytatja a lapozást */,
+  },
+
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+
+  breakpoints: {
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 3,
+      spaceBetween: 32,
+    },
+  },
+});
+
+/*=============== BŐVEBBEN / ÖSSZECSUKÁS FUNKCIÓ ===============*/
+const readMoreBtns = document.querySelectorAll(".read-more-btn");
+
+readMoreBtns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    // Megkeressük a gomb fölötti szöveget (a description-t)
+    let textElement = this.previousElementSibling;
+
+    // Váltogatjuk a 'show-full' osztályt (kinyit / becsuk)
+    textElement.classList.toggle("show-full");
+
+    // Ha ki van nyitva, átírjuk a szöveget és a nyilat felfelé mutatóra
+    if (textElement.classList.contains("show-full")) {
+      this.innerHTML = 'Összecsukás <i class="ri-arrow-up-s-line"></i>';
+    } else {
+      // Ha be van csukva, visszaírjuk Bővebbenre
+      this.innerHTML = 'Bővebben <i class="ri-arrow-down-s-line"></i>';
+    }
+  });
 });

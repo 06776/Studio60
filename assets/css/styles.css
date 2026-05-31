@@ -427,7 +427,7 @@ img {
   padding-bottom: 0.25rem;
   display: flex;
   justify-content: space-between; /* Balra a nap, jobbra az időpont */
-  border-bottom: 1px dashed hsla(var(--hue), 20%, 80%, 0.2); /* Egy nagyon finom szaggatott vonal, ami vezeti a szemet */
+  border-bottom: 1.5px dashed hsla(var(--hue), 20%, 80%, 0.6); /* Egy nagyon finom szaggatott vonal, ami vezeti a szemet */
 }
 
 .business-card__hours li:last-child {
@@ -660,93 +660,286 @@ img {
   display: block;
 }
 
-/*=============== PRICING ===============*/
-.pricing__container {
-  row-gap: 2rem;
+/*==================================================
+   JÓGA REND (SCHEDULE) SZEKCIÓ STÍLUSAI
+  ==================================================*/
+
+.schedule__container {
+  display: grid;
+  gap: 1.5rem;
 }
 
-.pricing__card {
+/* Napok kártyái */
+.schedule__day {
   background-color: var(--container-color);
-  padding: 3rem 2rem;
-  border-radius: 2rem;
+  padding: 2rem 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* Egy nagyon finom, lágy árnyék */
+  transition: transform 0.4s ease;
+}
+
+.schedule__day:hover {
+  transform: translateY(-5px); /* Picit felemelkedik, ha ráhúzzák az egeret */
+}
+
+/* A nap neve (Hétfő, Kedd...) */
+.schedule__day-title {
   text-align: center;
-  border: 1px solid hsla(var(--hue), 20%, 80%, 0.5);
-  box-shadow: 0 8px 24px rgba(var(--hue), 20%, 40%, 0.03);
-  position: relative;
-  overflow: hidden;
+  font-size: var(--h3-font-size);
+  color: var(--title-color);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Kicsit szellősebb, elegánsabb betűköz */
+}
+
+/* Egy konkrét óra doboza */
+.schedule__class {
+  text-align: center;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1); /* Szaggatott vonal az órák közé */
+}
+
+/* Az utolsó óra alatt ne legyen vonal */
+.schedule__class:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.schedule__time {
+  display: block;
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+  margin-bottom: 0.25rem;
+  font-weight: var(--font-medium);
+}
+
+.schedule__name {
+  font-size: var(--normal-font-size);
+  color: var(--title-color);
+  margin-bottom: 0.25rem;
+}
+
+.schedule__name small {
+  display: block;
+  font-size: var(--smaller-font-size);
+  font-weight: normal;
+  color: var(--text-color);
+  margin-top: 0.1rem;
+}
+
+.schedule__instructor {
+  display: block;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color);
+  font-style: italic; /* Dőlt betű az oktató nevének */
+}
+
+/* Szombat (Pihenőnap) stílusa */
+.schedule__class--empty {
   display: flex;
   flex-direction: column;
-  transition:
-    transform 0.4s,
-    box-shadow 0.4s;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.5rem; /* Kellemes térköz a Szombat felirat és az ikon között */
+  opacity: 0.6;
 }
 
-.pricing__card:hover {
-  transform: translateY(-0.5rem);
-  box-shadow: 0 12px 32px rgba(var(--hue), 20%, 40%, 0.1);
-}
-
-/* A kiemelt, középső kártya stílusa */
-.pricing__card-active {
-  background: var(--conic-gradient); /* Használja a szép átmenetünket */
-  border: none;
-}
-
-/* "Legnépszerűbb" szalag */
-.pricing__badge {
-  position: absolute;
-  top: 2.5rem; /* Kicsit lejjebb toljuk a saroktól */
-  right: -3.5rem; /* Kicsit kijjebb toljuk, hogy a szalag végei túllógjanak a vágáson */
-  width: 15rem; /* Fix szélességet adunk, hogy a hosszú magyar szó biztosan elférjen */
-  text-align: center; /* Középre igazítjuk a szót a szalagon belül */
-  background-color: var(--first-color-alt);
-  color: #fff;
-  padding: 0.5rem 0; /* A jobb/bal belső margót levesszük, mert a text-align rendezi */
-  font-size: var(--smaller-font-size);
-  transform: rotate(45deg);
-  font-weight: var(--font-semi-bold);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.pricing__title {
-  font-size: var(--h3-font-size);
-  margin-bottom: 0.75rem;
+.schedule__class--empty i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem; /* Mivel az ikon most felül van, lefelé tolja el a szöveget */
   color: var(--text-color);
 }
 
-.pricing__amount {
-  font-size: var(--biggest-font-size);
-  color: var(--first-color);
-  margin-bottom: 2rem;
-  font-family: var(--second-font);
+#schedule .section__title {
+  margin-bottom: 0.5rem !important;
 }
 
-.pricing__list {
-  text-align: left;
-  margin-bottom: 2.5rem;
+/* Az idézet középre húzása és a kártyákhoz való távolság beállítása */
+#schedule .section__subtitle {
+  display: block;
+  text-align: center !important;
+  margin-bottom: 2.5rem !important; /* Ez tolja lejjebb a naptár kártyáit az idézettől */
+}
+
+.schedule__day-icon {
+  display: block;
+  text-align: center;
+  font-size: 2.5rem; /* Jó nagy, jól látható méret */
+  color: var(
+    --title-color
+  ); /* Ha a logód barnás-bézs színét akarod: cseréld le pl. #d4a373 -ra! */
+  margin-bottom: 0.5rem;
+  opacity: 0.8; /* Egy picit halványít rajta, hogy lágyabb legyen a megjelenés */
+}
+
+/* Felkészülés a saját kimentett képeidre (ha cserélnéd) */
+.schedule__day-img {
+  display: block;
+  width: 55px; /* Pont akkora méret, ami elegáns a cím felett */
+  height: auto;
+  margin: 0 auto 0.75rem auto; /* Középre igazítja */
+}
+
+/* A napok címeinek pici igazítása, hogy jobban mutasson az ikonnal */
+.schedule__day-title {
+  margin-top: 0;
+}
+
+/* ================= RESZPONZÍV BEÁLLÍTÁSOK ================= */
+
+/* Tablet nézet (2 oszlop) */
+@media screen and (min-width: 576px) {
+  .schedule__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Asztali nézet (3 oszlop) */
+@media screen and (min-width: 992px) {
+  .schedule__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Vasárnapot (a 7. elemet) középre tesszük a szimmetria miatt! */
+  .schedule__day:nth-child(7) {
+    grid-column: 2 / 3;
+  }
+}
+
+/*==================================================
+   ÁRAINK (PRICING SLIDER) PRÉMIUM STÍLUSAI
+  ==================================================*/
+
+.pricing__container {
+  padding-bottom: 3.5rem;
+}
+
+.pricing__card {
+  /* SOKKAL LÁTHATÓBB SZÍNÁTMENET: Hófehérből indul, és egy határozott, meleg "tejeskávé/homok" színbe fut le */
+  background: linear-gradient(145deg, #ffffff 0%, #d2bfae 100%) !important;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 3rem 1.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* Az árnyékot is picit felerősítettem, hogy jobban kiemelje a kártyát */
+  height: auto;
   display: flex;
   flex-direction: column;
-  row-gap: 1.25rem;
-  flex: 1; /* A gombot az aljára tolja, mint a projekteknél */
+  align-items: center;
 }
 
-.pricing__item {
+/* Kártya Fejléc */
+.pricing__header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1.5px dashed rgba(0, 0, 0, 0.1); /* Elegáns szaggatott vonal */
+  width: 100%;
+}
+
+.pricing__instructor {
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+  margin-bottom: 0.25rem;
+}
+
+.pricing__classes {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Árak listája (Középre igazítva) */
+.pricing__list {
   display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+  width: 100%;
+  align-items: center; /* Elemek középre igazítása */
+}
+
+.pricing__list li {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  column-gap: 0.75rem;
-  color: var(--white-color); /* Sötét szöveg a világos háttéren */
+  text-align: center;
+}
+
+.pricing__sub-title {
+  font-size: var(--normal-font-size);
+  color: var(--title-color);
+  margin-bottom: -0.5rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.pricing__item-title {
+  font-weight: var(--font-medium);
+  color: var(--title-color);
   font-size: var(--normal-font-size);
 }
 
-.pricing__item i {
-  color: var(--first-color);
+.pricing__item-price {
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+  margin-top: 0.25rem;
+}
+
+.pricing__item-valid {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Extra info doboz (pl. Mónika átjárható órái) */
+.pricing__note {
+  margin-top: 2rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 1.25rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column; /* Ikon és szöveg egymás alá */
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.pricing__note i {
+  color: var(--title-color);
   font-size: 1.5rem;
 }
 
-.pricing__button {
-  margin-top: auto;
-  width: 100%;
+.pricing__note p {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Swiper Pöttyök stílusa */
+.pricing__container .swiper-pagination-bullet {
+  background-color: var(--text-color);
+}
+.pricing__container .swiper-pagination-bullet-active {
+  background-color: var(--title-color);
+}
+
+#pricing .section__title {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Az idézet középre húzása és a csúszkától való távolság beállítása */
+#pricing .section__subtitle {
+  display: block;
+  text-align: center !important;
+  margin-bottom: 2.5rem !important;
 }
 
 /* Áraink Reszponzivitás (Nagy képernyők) */
@@ -1277,7 +1470,6 @@ img {
 }
 
 @media screen and (max-width: 576px) {
-  
   /* A konténert rácsról (Grid) oszlopos Flexbox-ra cseréljük */
   .projects__container {
     display: flex !important;
@@ -1297,5 +1489,56 @@ img {
     margin: 0 !important; /* A margin: auto-t kivettük, mert az align-items: center már elvégezte a munkát */
     box-sizing: border-box !important;
   }
-  
+}
+
+.about__img {
+  border-radius: 1.5rem !important; /* Szép, egyenletes, finom lekerekítés */
+  width: 100% !important; /* Kitölti a rendelkezésre álló szélességet */
+  height: 300px !important; /* Fix magasság, hogy a kép ne laposodjon el */
+  object-fit: cover !important; /* Garantálja, hogy a fotó torzulás nélkül töltse ki a keretet */
+}
+
+/* PC-s és Tablet nézet: visszatérés az eredeti, nagyobb formához */
+@media screen and (min-width: 768px) {
+  .about__img {
+    border-radius: 3rem !important; /* PC-n visszakapja a nagyobb lekerekítést */
+    height: auto !important; /* PC-n a magasság automatikusan igazodik */
+  }
+}
+
+.classes__description {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4 !important;
+  line-clamp: 4 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* Kinyitott állapot: a korlátozás feloldása */
+.classes__description.show-full {
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  display: block !important; /* Ez azonnal kiüti a vágást, ha kinyitod! */
+}
+
+/* A "Bővebben" gomb kinézete (Ez maradhat változatlanul) */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.read-more-btn:hover {
+  opacity: 0.7;
+}
+
+.read-more-btn i {
+  font-size: 1.25rem;
+  margin-left: 0.25rem;
+  transition: 0.3s;
 }
